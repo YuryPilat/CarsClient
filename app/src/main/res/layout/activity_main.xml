@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context="com.example.pupkoyury_testtask.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/mainlLayout"
+        android:weightSum="12"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:divider="@drawable/mydivider"
+        android:showDividers="beginning|middle"
+
+        >
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/mydivider"
+            android:dividerPadding="12dip"
+            android:showDividers="middle"
+            >
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/greeting"
+                android:layout_gravity="start|center_vertical"
+                android:textAlignment="viewStart"
+                android:textSize="14sp"
+                android:textColor="@color/colorWhite"/>
+
+            <RadioGroup
+                android:layout_weight="3"
+                android:checkedButton="@+id/offer"
+                android:id="@+id/toggle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/radiogroup_background"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/search"
+                    android:background="@drawable/toggle_widget_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="@string/mister"
+                    android:textColor="@color/colorDeepGrey"
+                    android:hint="@string/mister"
+                    android:checked="true"
+                    />
+
+                <RadioButton
+                    android:id="@+id/offer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/toggle_widget_background"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="@string/missis"
+                    android:textColor="@color/colorDeepGrey"
+                    />
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/mydivider"
+            android:dividerPadding="12dip"
+            android:showDividers="middle"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp"
+                android:layout_gravity="start|center_vertical"
+                android:text="Фамилия"
+                android:textAlignment="viewStart"
+                android:layout_weight="1"/>
+
+            <EditText
+                android:id="@+id/last_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:layout_gravity="end|center_vertical"
+                android:gravity="end"
+                android:hint="@string/hint_surname"
+                android:textColorHint="@color/colorHintGrey"
+                android:inputType="text"
+                android:singleLine="true"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp"
+                android:background="@null"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/mydivider"
+            android:dividerPadding="12dip"
+            android:showDividers="middle"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp"
+                android:layout_gravity="start|center_vertical"
+                android:text="@string/name"
+                android:textAlignment="viewStart"
+                android:layout_weight="1"/>
+
+            <EditText
+                android:id="@+id/first_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:layout_gravity="end|center_vertical"
+                android:gravity="end"
+                android:hint="@string/hint_name"
+                android:textColorHint="@color/colorHintGrey"
+                android:inputType="textAutoComplete"
+                android:singleLine="true"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp"
+                android:background="@null"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/mydivider"
+            android:dividerPadding="12dip"
+            android:showDividers="middle">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp"
+                android:layout_gravity="start|center_vertical"
+                android:text="@string/fathers_name"
+                android:textAlignment="viewStart"
+                android:layout_weight="1"/>
+
+            <EditText
+                android:id="@+id/second_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:layout_gravity="end|center_vertical"
+                android:gravity="end"
+                android:hint="@string/hint_fathers_name"
+                android:textColorHint="@color/colorHintGrey"
+                android:inputType="textAutoComplete"
+                android:singleLine="true"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp"
+                android:background="@null"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/mydivider"
+            android:dividerPadding="12dip"
+            android:showDividers="middle">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp"
+                android:layout_gravity="start|center_vertical"
+                android:text="@string/phone"
+                android:textAlignment="viewStart"
+                android:layout_weight="1"/>
+
+            <EditText
+                android:id="@+id/phone_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:layout_gravity="end|center_vertical"
+                android:gravity="end"
+                android:hint="@string/hint_phone"
+                android:textColorHint="@color/colorHintGrey"
+                android:inputType="phone|number"
+                android:singleLine="true"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp"
+                android:background="@null"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/mydivider"
+            android:dividerPadding="12dip"
+            android:showDividers="middle">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp"
+                android:layout_gravity="start|center_vertical"
+                android:text="@string/email"
+                android:textAlignment="viewStart"
+                android:layout_weight="1"/>
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:layout_gravity="end|center_vertical"
+                android:gravity="end"
+                android:hint="@string/hint_email"
+                android:textColorHint="@color/colorHintGrey"
+                android:inputType="textEmailAddress"
+                android:singleLine="true"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp"
+                android:background="@null"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            >
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/mydivider"
+            android:dividerPadding="12dip"
+            android:showDividers="middle">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp"
+                android:layout_gravity="start|center_vertical"
+                android:text="@string/vin"
+                android:textAlignment="viewStart"
+                android:layout_weight="1"/>
+
+            <EditText
+                android:id="@+id/vin_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:layout_gravity="end|center_vertical"
+                android:gravity="end"
+                android:hint="@string/hint_vin"
+                android:textColorHint="@color/colorHintGrey"
+                android:inputType="numberDecimal"
+                android:maxLength="17"
+                android:singleLine="true"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp"
+                android:background="@null"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/mydivider"
+            android:dividerPadding="12dip"
+            android:showDividers="middle">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp"
+                android:layout_gravity="start|center_vertical"
+                android:text="@string/year_prodact"
+                android:textAlignment="viewStart"
+                android:layout_weight="1"/>
+
+            <EditText
+                android:id="@+id/chosen_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:layout_gravity="end|center_vertical"
+                android:gravity="end"
+                android:hint="@string/hint_year"
+                android:textColorHint="@color/colorLightGrey"
+                android:enabled="false"
+                android:singleLine="true"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/colorLightGrey"
+                android:textSize="14sp"
+                android:background="@null"
+                />
+
+            <Spinner
+                android:id="@+id/spinner_year"
+                android:layout_width="13dp"
+                android:layout_height="24dp"
+                android:layout_gravity="end|center_vertical"
+                android:background="@drawable/arrow"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:spinnerMode="dropdown"
+                android:prompt="@string/hint_year"
+                android:gravity="end" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/mydivider"
+            android:dividerPadding="12dip"
+            android:showDividers="middle">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp"
+                android:layout_gravity="start|center_vertical"
+                android:text="@string/clas"
+                android:textAlignment="viewStart"
+                android:layout_weight="1"/>
+
+            <EditText
+                android:id="@+id/classes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:layout_gravity="end|center_vertical"
+                android:gravity="end"
+                android:hint="@string/hint_clas"
+                android:textColorHint="@color/colorLightGrey"
+                android:enabled="false"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/colorLightGrey"
+                android:textSize="14sp"
+                android:background="@null"
+                />
+
+            <Spinner
+                android:id="@+id/spinner_clas"
+                android:layout_width="13dp"
+                android:layout_height="24dp"
+                android:layout_gravity="end|center_vertical"
+                android:background="@drawable/arrow"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:gravity="end" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/mydivider"
+            android:dividerPadding="12dip"
+            android:showDividers="middle">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp"
+                android:layout_gravity="start|center_vertical"
+                android:text="@string/city"
+                android:textAlignment="viewStart"
+                android:layout_weight="1"/>
+
+            <EditText
+                android:id="@+id/cities"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:layout_gravity="end|center_vertical"
+                android:gravity="end"
+                android:enabled="false"
+                android:hint="@string/hint_city"
+                android:textColorHint="@color/colorLightGrey"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/colorLightGrey"
+                android:textSize="14sp"
+                android:background="@null"
+                />
+
+            <Spinner
+                android:id="@+id/spinner_city"
+                android:layout_width="13dp"
+                android:layout_height="24dp"
+                android:layout_gravity="end|center_vertical"
+                android:background="@drawable/arrow"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:gravity="end" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/mydivider"
+            android:dividerPadding="12dip"
+            android:showDividers="middle">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp"
+                android:layout_gravity="start|center_vertical"
+                android:text="@string/dealer"
+                android:textAlignment="viewStart"
+                android:layout_weight="1"/>
+
+            <EditText
+                android:id="@+id/dealer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:layout_gravity="end|center_vertical"
+                android:gravity="end"
+                android:hint="@string/hint_dealer"
+                android:textColorHint="@color/colorLightGrey"
+                android:enabled="false"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/colorLightGrey"
+                android:textSize="14sp"
+                android:background="@null"
+                />
+
+            <Spinner
+                android:id="@+id/spinner_dealer"
+                android:layout_width="13dp"
+                android:layout_height="24dp"
+                android:layout_gravity="end|center_vertical"
+                android:background="@drawable/arrow"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:gravity="end"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

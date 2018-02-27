@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">CarClient</string>
+    <string name="MainTitle">Service Привилегия 3</string>
+    <string name="prefsName">MainSettings</string>
+    <string name="greeting">Обращение</string>
+    <string name="mister">Господин</string>
+    <string name="missis">Госпожа</string>
+    <string name="name">Имя</string>
+    <string name="fathers_name">Отчество</string>
+    <string name="surname">Фамилия</string>
+    <string name="phone">Телефон</string>
+    <string name="email">Email</string>
+    <string name="vin">VIN</string>
+    <string name="year_prodact">Год выпуска</string>
+    <string name="clas">Класс</string>
+    <string name="city">Город</string>
+    <string name="dealer">Дилер</string>
+    <string name="done">Готово</string>
+    <string name="hint_surname">Введите Вашу фамилию</string>
+    <string name="hint_name">Введите Ваше имя</string>
+    <string name="hint_fathers_name">Введите Ваше отчество</string>
+    <string name="hint_phone">+7</string>
+    <string name="hint_email">E-mail</string>
+    <string name="hint_vin">Введите VIN</string>
+    <string name="hint_year">Выберите год выпуска</string>
+    <string name="hint_dealer">Выберите дилера</string>
+    <string name="hint_clas">Выберите класс</string>
+    <string name="hint_city">Выберите город</string>
+    <string name="no_token">Токена нет</string>
+    <string name="empty_fields">Все поля обязательны для заполнения</string>
+    <string name="invalid_email">Неправильный e-mail!</string>
+    <string name="toast_choose_city">Сначала выберите город</string>
+    <string name="london">Лондон</string>
+    <string name="paris">Париж</string>
+    <string name="madrid">Мадрид</string>
+</resources>
