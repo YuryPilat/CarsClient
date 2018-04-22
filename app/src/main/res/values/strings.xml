@@ -30,7 +30,7 @@
     <string name="empty_fields">Все поля обязательны для заполнения</string>
     <string name="invalid_email">Неправильный e-mail!</string>
     <string name="toast_choose_city">Сначала выберите город</string>
-    <string name="london">Лондон</string>
-    <string name="paris">Париж</string>
-    <string name="madrid">Мадрид</string>
+    <string name="SENT_OK">Отправлено успешно</string>
+    <string name="ERROR_MSG">Произошла ошибка, проверьте подключение к Интернету</string>
+
 </resources>

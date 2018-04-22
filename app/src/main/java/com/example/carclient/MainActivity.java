@@ -1,7 +1,8 @@
-﻿package com.example.carclient;
+package com.example.carclient;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.telephony.PhoneNumberUtils;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -15,11 +16,17 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import org.json.JSONException;
+import com.example.carclient.managers.HttpManager;
+import com.example.carclient.models.BaseModel;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.regex.Pattern;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     private final String YEAR = "Year";
@@ -32,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private final String PHONE = "Phone";
     private final String VIN = "VIN";
     private final String EMAIL = "Email";
+    private final String CHOSEN = "isChosen";
 
     private EditText chosen_year;
     private EditText chosen_classes;
@@ -43,32 +51,22 @@ public class MainActivity extends AppCompatActivity {
     private EditText phone_number;
     private EditText vin_number;
     private EditText email;
-    private ArrayList<String> array_years;
     private String _validationError;
     Spinner spinnerDealer;
+    HttpManager httpManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
+
         setScreen();
+        httpManager = new HttpManager();
+
         setYears();
-
-        //ToDo: loading data from server is expected
-        ArrayList<String> array_cities = new ArrayList<>();
-        array_cities.add(getResources().getString(R.string.hint_city));
-        array_cities.add(getResources().getString(R.string.london));
-        array_cities.add(getResources().getString(R.string.paris));
-        array_cities.add(getResources().getString(R.string.madrid));
-
-        ArrayList<String> array_dealers = new ArrayList<>();
-        array_dealers.add(getResources().getString(R.string.hint_dealer));
-        array_dealers.add("Гарри");
-        array_dealers.add("Рон");
-        array_dealers.add("Гермиона");
-        setAdapterAndSpinner(R.id.spinner_city, chosen_city, CITY, array_cities);
-        setAdapterAndSpinner(R.id.spinner_dealer, chosen_dealer, DEALER, array_dealers);
+        getCities();
+        getClasses();
+        getDealers();
 
         spinnerDealer = findViewById(R.id.spinner_dealer);
         spinnerDealer.setOnTouchListener(new View.OnTouchListener() {
@@ -85,8 +83,75 @@ public class MainActivity extends AppCompatActivity {
                 }return true;
             }
         });
+    }
 
-        setAdapterAndSpinner(R.id.spinner_year, chosen_year, YEAR, array_years);
+    private void getCities() {
+        retrofit2.Call<List<BaseModel>> cities = httpManager.serverApi.getCities();
+        cities.enqueue(new Callback<List<BaseModel>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<BaseModel>> call, @NonNull Response<List<BaseModel>> response) {
+                List<BaseModel> recievedData = response.body();
+                if (recievedData != null) {
+                    ArrayList<String> array_cities = new ArrayList<>();
+                    array_cities.add(getResources().getString(R.string.hint_city));
+                    for (int i =0; i<recievedData.size(); i++) {
+                        array_cities.add(recievedData.get(i).name);
+                    }
+                    setAdapterAndSpinner(R.id.spinner_city, chosen_city, CITY, array_cities);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<BaseModel>> call, @NonNull Throwable t) {
+                Toast.makeText(getApplicationContext(), R.string.ERROR_MSG, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void getClasses() {
+        retrofit2.Call<List<BaseModel>> cities = httpManager.serverApi.getClasses();
+        cities.enqueue(new Callback<List<BaseModel>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<BaseModel>> call, @NonNull Response<List<BaseModel>> response) {
+                List<BaseModel> recievedData = response.body();
+                if (recievedData != null) {
+                    ArrayList<String> array_classes = new ArrayList<>();
+                    array_classes.add(getResources().getString(R.string.hint_clas));
+                    for (int i =0; i<recievedData.size(); i++) {
+                        array_classes.add(recievedData.get(i).name);
+                    }
+                    setAdapterAndSpinner(R.id.spinner_clas, chosen_classes, CLASSES, array_classes);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<BaseModel>> call, @NonNull Throwable t) {
+                Toast.makeText(getApplicationContext(), R.string.ERROR_MSG, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void getDealers() {
+        retrofit2.Call<List<BaseModel>> cities = httpManager.serverApi.getDealers();
+        cities.enqueue(new Callback<List<BaseModel>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<BaseModel>> call, @NonNull Response<List<BaseModel>> response) {
+                List<BaseModel> recievedData = response.body();
+                if (recievedData != null) {
+                    ArrayList<String> array_dealers = new ArrayList<>();
+                    array_dealers.add(getResources().getString(R.string.hint_dealer));
+                    for (int i =0; i<recievedData.size(); i++) {
+                        array_dealers.add(recievedData.get(i).name);
+                    }
+                    setAdapterAndSpinner(R.id.spinner_dealer, chosen_dealer, DEALER, array_dealers);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<BaseModel>> call, @NonNull Throwable t) {
+                Toast.makeText(getApplicationContext(), R.string.ERROR_MSG, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -100,9 +165,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_done:
                 if (IsDataValid()){
                     saveInputs();
-                    sendToServer();
+                    Toast.makeText(this, R.string.SENT_OK, Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(this, _validationError, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, _validationError, Toast.LENGTH_LONG).show();
                 }
             default:
                 return super.onOptionsItemSelected(item);
@@ -174,13 +239,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setYears() {
-        array_years = new ArrayList<>();
+        ArrayList<String> array_years = new ArrayList<>();
         int year = Calendar.getInstance().get(Calendar.YEAR);
         array_years.add(getResources().getString(R.string.hint_year));
         array_years.add(String.valueOf(year-2));
         for (int i=0; i <= 15; i++){
             array_years.add(String.valueOf(year - i));
         }
+        setAdapterAndSpinner(R.id.spinner_year, chosen_year, YEAR, array_years);
     }
 
     private void setAdapterAndSpinner(int spinnerId, final EditText field, final String setText, final ArrayList<String> arrayList) {
@@ -188,25 +254,32 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, arrayList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        Spinner spinnerYear = findViewById(spinnerId);
+        final Spinner spinnerYear = findViewById(spinnerId);
         spinnerYear.setAdapter(adapter);
         spinnerYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String current_year = String.valueOf(arrayList.get(position));
-                Root.setString(setText, current_year);
-                field.setText(Root.getString(setText, ""));
+                if (position ==0) {
+                    Root.setString(setText, arrayList.get(position));
+                    Root.setBoolean(setText + CHOSEN, false);
+                    field.setText(Root.getString(setText, ""));
+                } else {
+                    Root.setString(setText, arrayList.get(position));
+                    Root.setBoolean(setText+CHOSEN, true);
+                    field.setText(Root.getString(setText, ""));
+                }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
+
             }
         });
     }
 
     private boolean IsDataValid() {
-        if (checkFieldsFill()) {
+        if (checkFieldsFill() && checkSpinnersFill()) {
             if(isValidEmailId(email.getText().toString())){
                 return true;
             } else {
@@ -231,12 +304,19 @@ public class MainActivity extends AppCompatActivity {
                 phone_number,
                 email,
                 vin_number,
-                chosen_year,
-                chosen_classes,
-                chosen_city,
-                chosen_dealer};
+                };
         for (EditText field : fields) {
             if (field.getText().toString().length() <= 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean checkSpinnersFill() {
+        String [] fields = {YEAR, CITY, CLASSES, DEALER };
+        for (String field : fields) {
+            if (!Root.getBoolean(field + CHOSEN, false)) {
                 return false;
             }
         }
@@ -252,7 +332,4 @@ public class MainActivity extends AppCompatActivity {
         Root.setString(VIN, vin_number.getText().toString());
     }
 
-    private void sendToServer() {
-
-    }
 }
